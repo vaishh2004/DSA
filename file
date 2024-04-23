@@ -1,0 +1,47 @@
+/*file handling*/
+
+#include <iostream>
+#include <fstream>
+
+using namespace std;
+
+int main() {
+    ofstream outputFile("output.txt"); 
+
+    if (outputFile.is_open()) {
+        outputFile << "Hello, World!" << endl;
+        outputFile << "This is a C++ program for file handling." << endl;
+        outputFile.close();
+        cout << "Data written to file successfully." << endl;
+    } else {
+        cout << "Error: Unable to open file for writing!" << endl;
+        return 1;
+    }
+
+    ofstream appendFile("output.txt", ios::app);
+
+    if (appendFile.is_open()) {
+        appendFile << "Appending additional data to the file." << endl;
+        appendFile.close(); // Closing the file
+        cout << "Data appended to file successfully." << endl;
+    } else {
+        cout << "Error: Unable to open file for appending!" << endl;
+        return 1;
+    }
+
+    ifstream inputFile("output.txt"); 
+
+    if (inputFile.is_open()) {
+        cout << "Contents of the file:" << endl;
+        string line;
+        while (getline(inputFile, line)) {
+            cout << line << endl;
+        }
+        inputFile.close(); 
+    } else {
+        cout << "Error: Unable to open file for reading!" << endl;
+        return 1;
+    }
+
+    return 0;
+}
